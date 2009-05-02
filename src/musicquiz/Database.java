@@ -6,7 +6,6 @@ package musicquiz;
 
 import java.io.File;
 import java.util.Hashtable;
-import javax.activation.MimetypesFileTypeMap;
 
 /**
  *
@@ -16,7 +15,6 @@ public class Database {
 
     private File dir;
     private Hashtable songs;
-    static String[] filetypes = {"mp3", "ogg"};
 
     Database() {
         songs = new Hashtable();
@@ -48,7 +46,7 @@ public class Database {
                 treeWalk(children[i]);
             }
         } else {
-            if (file.getName().endsWith(".mp3")) {
+            if (file.getName().endsWith(".mp3")) { // @todo supported file types
                 songs.put(songs.size() + 1, new Song(file));
             }
         }
