@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sound.sampled.*;
+import org.farng.mp3.*;
 
 import java.util.Map;
 
@@ -18,30 +19,34 @@ import java.util.Map;
  */
 public class Song {
     private File file;
-    private Map properties;
+    private String artist, title;
+    private boolean loaded = false;
 
     Song(File file) {
         this.file = file;
     }
 
-    private Map getProperties() {
-        if (properties == null) {
+    private void getProperties() {
+        if (!loaded) {
+            MP3File mp3file;
             try {
-                properties = AudioSystem.getAudioFileFormat(file).properties();
-            } catch (UnsupportedAudioFileException ex) {
-                Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+                mp3file = new MP3File(file);
+                title = mp3file.getID3v2Tag().getSongTitle();
+                artist = mp3file.getID3v2Tag().getLeadArtist();
             } catch (IOException ex) {
+                Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (TagException ex) {
                 Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return properties;
+        loaded=true;
     }
 
     String getSongname() {
-        return (String) getProperties().get("title");
+        return (String) (title.isEmpty() ? "MP3 = KACKE!" : title);
     }
 
     String getArtist() {
-        return (String) getProperties().get("author");
+        return (String) artist;
     }
 }

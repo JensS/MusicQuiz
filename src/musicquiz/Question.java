@@ -20,7 +20,7 @@ public class Question {
 
     String getQuestionString()
     {
-        return song.getSongname();
+        return (String) song.getSongname();
     }
 
     Cover getCover()
