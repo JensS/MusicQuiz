@@ -351,7 +351,7 @@ public class MusicQuizView extends FrameView  {
         answer3Btn.setText(question.getAnswer3Txt());
         answer4Btn.setText(question.getAnswer4Txt());
         getFrame().pack();
-        question.getCorrectSong().play(1);
+        question.getCorrectSong().play(15); //@todo use preferences... ?
     }
 
     @Action

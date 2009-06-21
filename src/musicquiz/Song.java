@@ -10,6 +10,8 @@ import java.util.HashMap;
 import org.farng.mp3.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.util.Timer;
+import java.util.TimerTask;
 import javazoom.jl.player.Player;
 
 /**
@@ -36,10 +38,15 @@ public class Song {
                     info.put("title", mp3file.getID3v1Tag().getSongTitle());
                     info.put("artist", mp3file.getID3v1Tag().getLeadArtist());
                 }
-                else
+                else if (mp3file.hasID3v2Tag())
                 {
                     info.put("title", mp3file.getID3v2Tag().getSongTitle());
                     info.put("artist", mp3file.getID3v2Tag().getLeadArtist());
+                }
+                else
+                {
+                    info.put("title", "unkown title");
+                    info.put("artist",  "unkown artist");
                 }
             } catch (IOException ex) {
             } catch (TagException ex) {
@@ -76,6 +83,15 @@ public class Song {
                 }
             }
         }.start();
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Song.this.stopPlayer();
+            }
+        }, n_seconds*1000);
+
     }
 
     void stopPlayer() {
