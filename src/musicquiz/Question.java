@@ -24,6 +24,12 @@ public class Question {
         randomObj = new Random();
         for (int i = 0; i < 4; i++) {
             songsList[i] = randomObj.nextInt(gameObj.getDbObj().getSongs().size());
+
+            //valid song?
+            while (getSong(i).getSongname().equals(""))
+            {
+                songsList[i] = randomObj.nextInt(gameObj.getDbObj().getSongs().size());
+            }
         }
         correctSong = randomObj.nextInt(4);
     }

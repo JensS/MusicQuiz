@@ -73,6 +73,7 @@ public class Game {
     }
 
     void stopGame() {
+        currentQuestion = null;
     }
 
     void displayResults() {
