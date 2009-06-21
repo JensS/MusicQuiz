@@ -57,6 +57,6 @@ public class Database {
     }
 
     public int getSongsCount() {
-        return songs.size();
+        return getSongs().size();
     }
 }

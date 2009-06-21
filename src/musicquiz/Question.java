@@ -5,22 +5,27 @@
 
 package musicquiz;
 
+import java.util.HashMap;
+import java.util.Random;
 
 /**
  *
  * @author jens
  */
 public class Question {
-    private Song song;
+    private HashMap songs;
+    private int correctSong;
 
-    Question(Song song)
-    {
-        this.song = song;
+    Question(Game gameObj) {
+        for (int i = 0; i < 4; i++)
+        {
+            //songs.put(i, gameObj.getDbObj().getSongs().get(gameObj.getRandomObj().nextInt(gameObj.getDbObj().getSongs().size())));
+        }
     }
 
     String getQuestionString()
     {
-        return (String) song.getSongname();
+        return (String) "What Song do you hear?";
     }
 
     Cover getCover()
@@ -28,8 +33,25 @@ public class Question {
         return new Cover(MusicQuizApp.getInstance().getClass().getResource("musicquiz.png").getPath());
     }
 
-    Song getSong()
+    private Song getSong(int n)
     {
-        return song;
+        return (Song) songs.get(n);
+    }
+
+    String getAnswer1Txt()
+    {
+        return getSong(0).getSongname();
+    }
+    String getAnswer2Txt()
+    {
+        return getSong(1).getSongname();
+    }
+    String getAnswer3Txt()
+    {
+        return getSong(2).getSongname();
+    }
+    String getAnswer4Txt()
+    {
+        return getSong(3).getSongname();
     }
 }

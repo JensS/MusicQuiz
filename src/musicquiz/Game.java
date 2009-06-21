@@ -38,10 +38,8 @@ public class Game {
         {
             db.setMusicDir(getPreferences().get("music-dir", ""));
             db.scanDir();
-            if (db.getSongsCount() != 0)
+            if (db.getSongsCount() > 4)
                 startable = true;
-
-            //MusicQuizApp.getApplication().getMainView().
         }
         return startable;
     }
@@ -49,18 +47,24 @@ public class Game {
     void startGame()
     {
         starttime = new Date();
+        //MusicQuizApp.getApplication().getMainView().
     }
 
     Question getQuestion()
     {
-        if (!isStartable())
-            return null;
-        
-        int id = random.nextInt(db.getSongsCount());
-
-        return new Question((Song) db.getSongs().get(id));
+        return new Question(this);
     }
 
+    Database getDbObj()
+    {
+        return db;
+    }
+
+    Random getRandomObj()
+    {
+        return random;
+    }
+    
     Preferences getPreferences()
     {
         if (prefs == null)
@@ -68,5 +72,12 @@ public class Game {
             prefs = Preferences.userNodeForPackage(getClass());
         }
         return prefs;
+    }
+
+    void stopGame() {
+    }
+
+    void displayResults() {
+        
     }
 }

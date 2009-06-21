@@ -6,47 +6,45 @@ package musicquiz;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.*;
 import org.farng.mp3.*;
-
-import java.util.Map;
 
 /**
  *
  * @author jens
  */
 public class Song {
+
     private File file;
-    private String artist, title;
-    private boolean loaded = false;
+    private HashMap info;
 
     Song(File file) {
         this.file = file;
+        info = new HashMap();
     }
 
-    private void getProperties() {
-        if (!loaded) {
-            MP3File mp3file;
+    private void getInfo() {
+        if (info.size() == 0) {
             try {
-                mp3file = new MP3File(file);
-                title = mp3file.getID3v2Tag().getSongTitle();
-                artist = mp3file.getID3v2Tag().getLeadArtist();
+                MP3File mp3file = new MP3File(file);
+                info.put("title", mp3file.getID3v2Tag().getSongTitle());
+                info.put("artist", mp3file.getID3v2Tag().getLeadArtist());
             } catch (IOException ex) {
-                Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
             } catch (TagException ex) {
-                Logger.getLogger(Song.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        loaded=true;
     }
 
     String getSongname() {
-        return (String) (title.isEmpty() ? "MP3 = KACKE!" : title);
+        getInfo();
+        return  (String) info.get("title");
     }
 
     String getArtist() {
-        return (String) artist;
+        getInfo();
+        return  (String) info.get("artist");
     }
 }
