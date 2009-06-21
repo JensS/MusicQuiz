@@ -3,6 +3,7 @@
  */
 package musicquiz;
 
+import java.awt.Color;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -10,20 +11,21 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.TimerTask;
 import javax.swing.Timer;
 import java.util.TimerTask;
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 /**
  * The application's main frame.
  */
-public class MusicQuizView extends FrameView  {
+public class MusicQuizView extends FrameView {
 
     private Game game;
     private MusicQuizSettings settingsFrame;
+    private JButton markedBtn;
 
     public MusicQuizView(SingleFrameApplication app) {
         super(app);
@@ -36,7 +38,7 @@ public class MusicQuizView extends FrameView  {
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
-        messageTimer = new Timer(messageTimeout, new ActionListener() {
+        messageTimer = new javax.swing.Timer(messageTimeout, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
@@ -351,20 +353,45 @@ public class MusicQuizView extends FrameView  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitBtnPressedAction(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitBtnPressedAction
-        if (game.isAQuestionLoaded())
+        if (game.isAQuestionLoaded()) {
             game.getQuestion().getCorrectSong().stopPlayer();
+        }
         game.stopGame();
         game.displayResults();
         setComponent(homePanel);
         getFrame().pack();
     }//GEN-LAST:event_quitBtnPressedAction
 
-    private void questionAnswered(int answer_n)
-    {
+    private void questionAnswered(int answer_n) {
+        markedBtn = getButton(game.getQuestion().getCorrectSongNumber());
+        markedBtn.setForeground(Color.GREEN);
         game.validateAnswer(answer_n);
         game.getQuestion().getCorrectSong().stopPlayer();
-        game.prepareNewQuestion();
-        assignQuestion();
+        java.util.Timer timer = new java.util.Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                MusicQuizView.this.game.prepareNewQuestion();
+                MusicQuizView.this.assignQuestion();
+                MusicQuizView.this.markedBtn.setForeground(null);
+            }
+        }, 1000);
+    }
+
+    private JButton getButton(int number) {
+        switch (number) {
+            case 1:
+                return answer1Btn;
+            case 2:
+                return answer2Btn;
+            case 3:
+                return answer3Btn;
+            case 4:
+                return answer4Btn;
+            default:
+                return null;
+        }
     }
 
     private void answer2BtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_answer2BtnMousePressed
@@ -400,8 +427,7 @@ public class MusicQuizView extends FrameView  {
         playSong();
     }
 
-    private void playSong()
-    {
+    private void playSong() {
         game.getQuestion().getCorrectSong().play(15); //@todo use preferences... ?
     }
 
@@ -441,5 +467,4 @@ public class MusicQuizView extends FrameView  {
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
-
 }
