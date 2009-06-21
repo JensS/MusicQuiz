@@ -50,6 +50,10 @@ public class Question {
         return getSong(correctSong);
     }
 
+    int getCorrectSongNumber() {
+        return correctSong+1;
+    }
+
     String getAnswer1Txt() {
         return getSong(0).getSongname();
     }

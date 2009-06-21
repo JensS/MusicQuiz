@@ -33,20 +33,15 @@ public class Song {
         if (info.size() == 0) {
             try {
                 MP3File mp3file = new MP3File(file);
-                if (mp3file.hasID3v1Tag())
-                {
+                if (mp3file.hasID3v1Tag()) {
                     info.put("title", mp3file.getID3v1Tag().getSongTitle());
                     info.put("artist", mp3file.getID3v1Tag().getLeadArtist());
-                }
-                else if (mp3file.hasID3v2Tag())
-                {
+                } else if (mp3file.hasID3v2Tag()) {
                     info.put("title", mp3file.getID3v2Tag().getSongTitle());
                     info.put("artist", mp3file.getID3v2Tag().getLeadArtist());
-                }
-                else
-                {
-                    info.put("title", "unkown title");
-                    info.put("artist",  "unkown artist");
+                } else {
+                    info.put("title", "");
+                    info.put("artist", "");
                 }
             } catch (IOException ex) {
             } catch (TagException ex) {
@@ -75,6 +70,7 @@ public class Song {
         }
 
         new Thread() {
+
             public void run() {
                 try {
                     player.play();
@@ -86,11 +82,12 @@ public class Song {
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
+
             @Override
             public void run() {
                 Song.this.stopPlayer();
             }
-        }, n_seconds*1000);
+        }, n_seconds * 1000);
 
     }
 

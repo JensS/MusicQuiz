@@ -10,7 +10,9 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TimerTask;
 import javax.swing.Timer;
+import java.util.TimerTask;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -55,8 +57,6 @@ public class MusicQuizView extends FrameView  {
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
         statusAnimationLabel.setIcon(idleIcon);
         progressBar.setVisible(false);
-        progressBar.setMaximum(100);
-        progressBar.setMinimum(0);
 
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
@@ -149,15 +149,35 @@ public class MusicQuizView extends FrameView  {
 
         answer1Btn.setText(resourceMap.getString("answer1Btn.text")); // NOI18N
         answer1Btn.setName("answer1Btn"); // NOI18N
+        answer1Btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                answer1BtnMousePressed(evt);
+            }
+        });
 
         answer3Btn.setText(resourceMap.getString("answer3Btn.text")); // NOI18N
         answer3Btn.setName("answer3Btn"); // NOI18N
+        answer3Btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                answer3BtnMousePressed(evt);
+            }
+        });
 
         answer2Btn.setText(resourceMap.getString("answer2Btn.text")); // NOI18N
         answer2Btn.setName("answer2Btn"); // NOI18N
+        answer2Btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                answer2BtnMousePressed(evt);
+            }
+        });
 
         answer4Btn.setText(resourceMap.getString("answer4Btn.text")); // NOI18N
         answer4Btn.setName("answer4Btn"); // NOI18N
+        answer4Btn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                answer4BtnMousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout answersContainerPanelLayout = new javax.swing.GroupLayout(answersContainerPanel);
         answersContainerPanel.setLayout(answersContainerPanelLayout);
@@ -331,27 +351,58 @@ public class MusicQuizView extends FrameView  {
     }// </editor-fold>//GEN-END:initComponents
 
     private void quitBtnPressedAction(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quitBtnPressedAction
+        if (game.isAQuestionLoaded())
+            game.getQuestion().getCorrectSong().stopPlayer();
         game.stopGame();
         game.displayResults();
         setComponent(homePanel);
         getFrame().pack();
     }//GEN-LAST:event_quitBtnPressedAction
 
+    private void questionAnswered(int answer_n)
+    {
+        game.validateAnswer(answer_n);
+        game.getQuestion().getCorrectSong().stopPlayer();
+        game.prepareNewQuestion();
+        assignQuestion();
+    }
+
+    private void answer2BtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_answer2BtnMousePressed
+        questionAnswered(2);
+    }//GEN-LAST:event_answer2BtnMousePressed
+
+    private void answer1BtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_answer1BtnMousePressed
+        questionAnswered(1);
+    }//GEN-LAST:event_answer1BtnMousePressed
+
+    private void answer3BtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_answer3BtnMousePressed
+        questionAnswered(3);
+    }//GEN-LAST:event_answer3BtnMousePressed
+
+    private void answer4BtnMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_answer4BtnMousePressed
+        questionAnswered(4);
+    }//GEN-LAST:event_answer4BtnMousePressed
+
     @Action
     public void startQuizPressed() {
         game.startGame();
         setComponent(quizPanel);
-        assignQuestion(game.getQuestion());
+        assignQuestion();
     }
 
-    public void assignQuestion(Question question) {
-        questionLabel.setText(question.getQuestionString());
-        answer1Btn.setText(question.getAnswer1Txt());
-        answer2Btn.setText(question.getAnswer2Txt());
-        answer3Btn.setText(question.getAnswer3Txt());
-        answer4Btn.setText(question.getAnswer4Txt());
+    public void assignQuestion() {
+        questionLabel.setText(game.getQuestion().getQuestionString());
+        answer1Btn.setText(game.getQuestion().getAnswer1Txt());
+        answer2Btn.setText(game.getQuestion().getAnswer2Txt());
+        answer3Btn.setText(game.getQuestion().getAnswer3Txt());
+        answer4Btn.setText(game.getQuestion().getAnswer4Txt());
         getFrame().pack();
-        question.getCorrectSong().play(15); //@todo use preferences... ?
+        playSong();
+    }
+
+    private void playSong()
+    {
+        game.getQuestion().getCorrectSong().play(15); //@todo use preferences... ?
     }
 
     @Action
