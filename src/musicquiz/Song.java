@@ -7,10 +7,10 @@ package musicquiz;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.farng.mp3.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import javazoom.jl.player.Player;
 
 /**
  *
@@ -18,6 +18,7 @@ import org.farng.mp3.*;
  */
 public class Song {
 
+    private Player player;
     private File file;
     private HashMap info;
 
@@ -30,8 +31,16 @@ public class Song {
         if (info.size() == 0) {
             try {
                 MP3File mp3file = new MP3File(file);
-                info.put("title", mp3file.getID3v2Tag().getSongTitle());
-                info.put("artist", mp3file.getID3v2Tag().getLeadArtist());
+                if (mp3file.hasID3v1Tag())
+                {
+                    info.put("title", mp3file.getID3v1Tag().getSongTitle());
+                    info.put("artist", mp3file.getID3v1Tag().getLeadArtist());
+                }
+                else
+                {
+                    info.put("title", mp3file.getID3v2Tag().getSongTitle());
+                    info.put("artist", mp3file.getID3v2Tag().getLeadArtist());
+                }
             } catch (IOException ex) {
             } catch (TagException ex) {
             }
@@ -40,11 +49,38 @@ public class Song {
 
     String getSongname() {
         getInfo();
-        return  (String) info.get("title");
+        return (String) info.get("title");
     }
 
     String getArtist() {
         getInfo();
-        return  (String) info.get("artist");
+        return (String) info.get("artist");
+    }
+
+    void play(int n_seconds) {
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            player = new Player(bis);
+        } catch (Exception e) {
+            System.out.println("Problem playing file " + file.getAbsolutePath());
+            System.out.println(e);
+        }
+
+        new Thread() {
+            public void run() {
+                try {
+                    player.play();
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        }.start();
+    }
+
+    void stopPlayer() {
+        if (player != null) {
+            player.close();
+        }
     }
 }

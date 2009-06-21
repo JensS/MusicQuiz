@@ -346,7 +346,12 @@ public class MusicQuizView extends FrameView  {
 
     public void assignQuestion(Question question) {
         questionLabel.setText(question.getQuestionString());
+        answer1Btn.setText(question.getAnswer1Txt());
+        answer2Btn.setText(question.getAnswer2Txt());
+        answer3Btn.setText(question.getAnswer3Txt());
+        answer4Btn.setText(question.getAnswer4Txt());
         getFrame().pack();
+        question.getCorrectSong().play(1);
     }
 
     @Action

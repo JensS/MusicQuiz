@@ -16,19 +16,14 @@ import java.util.Date;
  * @author jens
  */
 public class Game {
-    private ArrayList used_songs;
     private Database db;
     private Preferences prefs;
-
-    private Random random;
-
     private Date starttime;
+    private Question currentQuestion;
 
     private boolean startable = false;
 
     Game() {
-        used_songs = new ArrayList();
-        random = new Random();
         db = new Database();
     }
 
@@ -50,9 +45,16 @@ public class Game {
         //MusicQuizApp.getApplication().getMainView().
     }
 
+    void prepareNewQuestion()
+    {
+        currentQuestion = new Question(this);
+    }
+
     Question getQuestion()
     {
-        return new Question(this);
+        if(currentQuestion == null)
+            prepareNewQuestion();
+        return currentQuestion;
     }
 
     Database getDbObj()
@@ -60,10 +62,6 @@ public class Game {
         return db;
     }
 
-    Random getRandomObj()
-    {
-        return random;
-    }
     
     Preferences getPreferences()
     {
