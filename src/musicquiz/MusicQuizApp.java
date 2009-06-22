@@ -8,7 +8,8 @@ import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
 /**
- * The main class of the application.
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class MusicQuizApp extends SingleFrameApplication {
 

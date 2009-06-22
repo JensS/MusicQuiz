@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * MusicBoxSettings.java
  *
  * Created on 26.04.2009, 19:00:09
@@ -15,16 +10,23 @@ import javax.swing.JFileChooser;
 import java.io.File;
 
 /**
- *
- * @author jens
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class MusicQuizSettings extends javax.swing.JDialog {
     private Game game;
+    final JFileChooser fc;
 
     public MusicQuizSettings(java.awt.Frame parent, Game gameObj) {
         super(parent);
         this.game = gameObj;
+
         initComponents();
+
+        fc = new JFileChooser();
+        fc.setCurrentDirectory(new File(game.getPreferences().get("music-dir", fc.getCurrentDirectory().toString())));
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
         dirChooserBtn.setText((String) game.getPreferences().get("music-dir", "Select Dir"));
     }
 
@@ -110,9 +112,6 @@ public class MusicQuizSettings extends javax.swing.JDialog {
 
     @Action
     public void fileChooseBtnClicked() {
-        final JFileChooser fc = new JFileChooser();
-        fc.setCurrentDirectory(new File(game.getPreferences().get("music-dir", fc.getCurrentDirectory().toString())));
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
         int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -120,6 +119,7 @@ public class MusicQuizSettings extends javax.swing.JDialog {
         }
 
         dirChooserBtn.setText((String) game.getPreferences().get("music-dir", "Select Dir"));
+        pack();
     }
 
     @Action

@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package musicquiz;
 
 import java.util.prefs.*;
 
 /**
- *
- * @author jens
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class Game {
 
@@ -39,7 +35,7 @@ public class Game {
     }
 
     int getPlaybackTime() {
-        return (int) 60 - 10*level;
+        return (int) 61 - 7*level;
     }
 
     void startGame() {
@@ -101,7 +97,7 @@ public class Game {
             if (answers_to_complete_level == 0)
             {
                 level++;
-                answers_to_complete_level = 2 * level;
+                answers_to_complete_level = (int) Math.ceil(1.5 * level);
             }
             System.out.println("Ja");
         } else {

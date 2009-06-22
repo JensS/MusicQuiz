@@ -7,8 +7,8 @@ package musicquiz;
 import java.util.Random;
 
 /**
- *
- * @author jens
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class Question {
 
@@ -34,7 +34,7 @@ public class Question {
     }
 
     String getQuestionString() {
-        return (String) "What Song do you hear?";
+        return (String) "Which Song do you hear?";
     }
 
     private Song getSong(int n) {

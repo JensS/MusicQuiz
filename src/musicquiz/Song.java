@@ -15,8 +15,8 @@ import java.util.TimerTask;
 import javazoom.jl.player.Player;
 
 /**
- *
- * @author jens
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class Song {
 

@@ -19,7 +19,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 /**
- * The application's main frame.
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class MusicQuizView extends FrameView {
 
