@@ -15,7 +15,7 @@ public class Game {
     private Database db;
     private Preferences prefs;
     private long time_start_ms;
-    private long time_avg_ms;
+    private long time_sum_ms;
     private Question currentQuestion;
     private int correctAnswersCount = 0;
     private int falseAnswersCount = 0;
@@ -38,21 +38,21 @@ public class Game {
 
     void startGame() {
         correctAnswersCount = falseAnswersCount = 0;
-        time_avg_ms = time_start_ms = 0;
+        time_sum_ms = time_start_ms = 0;
     }
 
     void prepareNewQuestion() {
         currentQuestion = new Question(this);
-        if (time_avg_ms > 0)
-        {
-            time_avg_ms = (time_avg_ms + (System.currentTimeMillis() - time_start_ms)) / 2;
-        }
-        else
-        {
-            time_avg_ms = (System.currentTimeMillis() - time_start_ms);
-        }
+        if ((correctAnswersCount + falseAnswersCount) > 0)
+            time_sum_ms += System.currentTimeMillis() - time_start_ms;
         time_start_ms = System.currentTimeMillis();
-        System.out.println("Durchschnittszeit: " + (time_avg_ms /1000));
+    }
+    
+    int getAverageTimeSeconds()
+    {
+        if ((correctAnswersCount + falseAnswersCount) == 0)
+            return 0;
+        return (int) (time_sum_ms / (correctAnswersCount + falseAnswersCount) / 1000);
     }
 
     Question getQuestion() {
@@ -80,9 +80,6 @@ public class Game {
     boolean isAQuestionLoaded()
     {
         return !(currentQuestion == null);
-    }
-
-    void displayResults() {
     }
 
     void validateAnswer(int button) {

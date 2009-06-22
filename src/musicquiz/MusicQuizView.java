@@ -115,7 +115,6 @@ public class MusicQuizView extends FrameView {
 
         quizPanel = new javax.swing.JPanel();
         questionLabel = new javax.swing.JLabel();
-        coverCanvas = new java.awt.Canvas();
         answersContainerPanel = new javax.swing.JPanel();
         answer1Btn = new javax.swing.JButton();
         answer3Btn = new javax.swing.JButton();
@@ -134,9 +133,15 @@ public class MusicQuizView extends FrameView {
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
         homePanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
         startGameBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        introLabel = new javax.swing.JLabel();
+        resultsPanel = new javax.swing.JPanel();
+        gameFinishedLabel = new javax.swing.JLabel();
+        levelLabel = new javax.swing.JLabel();
+        levelLabel1 = new javax.swing.JLabel();
+        levelLabel2 = new javax.swing.JLabel();
+        quitQuizBtn2 = new javax.swing.JButton();
 
         quizPanel.setName("quizPanel"); // NOI18N
 
@@ -144,8 +149,6 @@ public class MusicQuizView extends FrameView {
         questionLabel.setFont(resourceMap.getFont("questionLabel.font")); // NOI18N
         questionLabel.setText(resourceMap.getString("questionLabel.text")); // NOI18N
         questionLabel.setName("questionLabel"); // NOI18N
-
-        coverCanvas.setName("coverCanvas"); // NOI18N
 
         answersContainerPanel.setName("answersContainerPanel"); // NOI18N
 
@@ -222,7 +225,6 @@ public class MusicQuizView extends FrameView {
                 .addContainerGap()
                 .addGroup(quizPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(answersContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(coverCanvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(questionLabel)
                     .addComponent(quitQuizBtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -231,9 +233,7 @@ public class MusicQuizView extends FrameView {
             quizPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(quizPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(quizPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(coverCanvas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(questionLabel))
+                .addComponent(questionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answersContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
@@ -306,17 +306,18 @@ public class MusicQuizView extends FrameView {
         );
 
         homePanel.setName("homePanel"); // NOI18N
+        homePanel.setPreferredSize(new java.awt.Dimension(400, 267));
 
-        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        welcomeLabel.setFont(resourceMap.getFont("welcomeLabel.font")); // NOI18N
+        welcomeLabel.setText(resourceMap.getString("welcomeLabel.text")); // NOI18N
+        welcomeLabel.setName("welcomeLabel"); // NOI18N
 
         startGameBtn.setAction(actionMap.get("startQuizPressed")); // NOI18N
         startGameBtn.setText(resourceMap.getString("startButton.text")); // NOI18N
         startGameBtn.setName("startButton"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        introLabel.setText(resourceMap.getString("introLabel.text")); // NOI18N
+        introLabel.setName("introLabel"); // NOI18N
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
@@ -326,10 +327,10 @@ public class MusicQuizView extends FrameView {
                 .addGroup(homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(homePanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
+                        .addComponent(welcomeLabel))
                     .addGroup(homePanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2))
+                        .addComponent(introLabel))
                     .addGroup(homePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(startGameBtn)))
@@ -339,12 +340,69 @@ public class MusicQuizView extends FrameView {
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(welcomeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(introLabel)
                 .addGap(18, 18, 18)
                 .addComponent(startGameBtn)
                 .addContainerGap(164, Short.MAX_VALUE))
+        );
+
+        resultsPanel.setName("resultsPanel"); // NOI18N
+        resultsPanel.setPreferredSize(new java.awt.Dimension(400, 196));
+
+        gameFinishedLabel.setFont(resourceMap.getFont("gameFinishedLabel.font")); // NOI18N
+        gameFinishedLabel.setText(resourceMap.getString("gameFinishedLabel.text")); // NOI18N
+        gameFinishedLabel.setName("gameFinishedLabel"); // NOI18N
+
+        levelLabel.setText(resourceMap.getString("levelLabel.text")); // NOI18N
+        levelLabel.setName("levelLabel"); // NOI18N
+
+        levelLabel1.setText(resourceMap.getString("levelLabel1.text")); // NOI18N
+        levelLabel1.setName("levelLabel1"); // NOI18N
+
+        levelLabel2.setText(resourceMap.getString("levelLabel2.text")); // NOI18N
+        levelLabel2.setName("levelLabel2"); // NOI18N
+
+        quitQuizBtn2.setText(resourceMap.getString("quitQuizBtn2.text")); // NOI18N
+        quitQuizBtn2.setName("quitQuizBtn2"); // NOI18N
+        quitQuizBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                quitBtnPressedAction(evt);
+            }
+        });
+
+        javax.swing.GroupLayout resultsPanelLayout = new javax.swing.GroupLayout(resultsPanel);
+        resultsPanel.setLayout(resultsPanelLayout);
+        resultsPanelLayout.setHorizontalGroup(
+            resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gameFinishedLabel)
+                    .addComponent(levelLabel)
+                    .addComponent(levelLabel1)
+                    .addComponent(levelLabel2))
+                .addContainerGap(264, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsPanelLayout.createSequentialGroup()
+                .addContainerGap(317, Short.MAX_VALUE)
+                .addComponent(quitQuizBtn2)
+                .addContainerGap())
+        );
+        resultsPanelLayout.setVerticalGroup(
+            resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resultsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gameFinishedLabel)
+                .addGap(18, 18, 18)
+                .addComponent(levelLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(levelLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(levelLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(quitQuizBtn2)
+                .addContainerGap())
         );
 
         setComponent(quizPanel);
@@ -357,24 +415,31 @@ public class MusicQuizView extends FrameView {
             game.getQuestion().getCorrectSong().stopPlayer();
         }
         game.stopGame();
-        game.displayResults();
+        displayResults();
         setComponent(homePanel);
         getFrame().pack();
     }//GEN-LAST:event_quitBtnPressedAction
+
+    private void displayResults() {
+    }
 
     private void questionAnswered(int answer_n) {
         markedBtn = getButton(game.getQuestion().getCorrectSongNumber());
         markedBtn.setForeground(Color.GREEN);
         game.validateAnswer(answer_n);
-        game.getQuestion().getCorrectSong().stopPlayer();
         java.util.Timer timer = new java.util.Timer();
         timer.schedule(new TimerTask() {
 
             @Override
             public void run() {
+                MusicQuizView.this.game.getQuestion().getCorrectSong().stopPlayer();
                 MusicQuizView.this.game.prepareNewQuestion();
                 MusicQuizView.this.assignQuestion();
-                MusicQuizView.this.markedBtn.setForeground(null);
+                // nicht schön, aber robust
+                MusicQuizView.this.answer1Btn.setForeground(null);
+                MusicQuizView.this.answer2Btn.setForeground(null);
+                MusicQuizView.this.answer3Btn.setForeground(null);
+                MusicQuizView.this.answer4Btn.setForeground(null);
             }
         }, 1000);
     }
@@ -419,16 +484,16 @@ public class MusicQuizView extends FrameView {
 
     public void assignQuestion() {
         questionLabel.setText(game.getQuestion().getQuestionString());
-        answer1Btn.setText(game.getQuestion().getAnswer1Txt());
-        answer2Btn.setText(game.getQuestion().getAnswer2Txt());
-        answer3Btn.setText(game.getQuestion().getAnswer3Txt());
-        answer4Btn.setText(game.getQuestion().getAnswer4Txt());
+        answer1Btn.setText("<html><b>1</b> " + game.getQuestion().getAnswer1Txt() + "</html>");
+        answer2Btn.setText("<html><b>2</b> " + game.getQuestion().getAnswer2Txt() + "</html>");
+        answer3Btn.setText("<html><b>3</b> " + game.getQuestion().getAnswer3Txt() + "</html>");
+        answer4Btn.setText("<html><b>4</b> " + game.getQuestion().getAnswer4Txt() + "</html>");
         getFrame().pack();
         playSong();
     }
 
     private void playSong() {
-        game.getQuestion().getCorrectSong().play(15); //@todo use preferences... ?
+        game.getQuestion().getCorrectSong().play(60); // level system?
     }
 
     @Action
@@ -446,20 +511,25 @@ public class MusicQuizView extends FrameView {
     private javax.swing.JButton answer3Btn;
     private javax.swing.JButton answer4Btn;
     private javax.swing.JPanel answersContainerPanel;
-    private java.awt.Canvas coverCanvas;
+    private javax.swing.JLabel gameFinishedLabel;
     private javax.swing.JPanel homePanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel introLabel;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JLabel levelLabel;
+    private javax.swing.JLabel levelLabel1;
+    private javax.swing.JLabel levelLabel2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JButton quitQuizBtn;
+    private javax.swing.JButton quitQuizBtn2;
     private javax.swing.JPanel quizPanel;
+    private javax.swing.JPanel resultsPanel;
     private javax.swing.JButton startGameBtn;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;

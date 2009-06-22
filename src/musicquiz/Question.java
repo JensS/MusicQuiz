@@ -4,7 +4,6 @@
  */
 package musicquiz;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -26,7 +25,7 @@ public class Question {
             songsList[i] = randomObj.nextInt(gameObj.getDbObj().getSongs().size());
 
             //valid song?
-            while (getSong(i).getSongname().equals(""))
+            while ((getSong(i) == null) || (getSong(i).getSongname() == null) || getSong(i).getSongname().equals(""))
             {
                 songsList[i] = randomObj.nextInt(gameObj.getDbObj().getSongs().size());
             }
@@ -36,10 +35,6 @@ public class Question {
 
     String getQuestionString() {
         return (String) "What Song do you hear?";
-    }
-
-    Cover getCover() {
-        return new Cover(MusicQuizApp.getInstance().getClass().getResource("musicquiz.png").getPath());
     }
 
     private Song getSong(int n) {

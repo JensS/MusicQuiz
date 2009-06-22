@@ -14,7 +14,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="answersContainerPanel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="coverCanvas" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="questionLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="quitQuizBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -26,10 +25,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="coverCanvas" min="-2" max="-2" attributes="0"/>
-                      <Component id="questionLabel" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="questionLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="answersContainerPanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="81" max="32767" attributes="0"/>
@@ -45,11 +41,6 @@
             <Property name="font" type="java.awt.Font" resourceKey="questionLabel.font"/>
             <Property name="text" type="java.lang.String" resourceKey="questionLabel.text"/>
             <Property name="name" type="java.lang.String" value="questionLabel" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="java.awt.Canvas" name="coverCanvas">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="coverCanvas" noResource="true"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="answersContainerPanel">
@@ -274,6 +265,9 @@
     <Container class="javax.swing.JPanel" name="homePanel">
       <Properties>
         <Property name="name" type="java.lang.String" value="homePanel" noResource="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 267]"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -283,11 +277,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="welcomeLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="introLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -302,9 +296,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="welcomeLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="introLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="startGameBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="164" max="32767" attributes="0"/>
@@ -313,11 +307,11 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="welcomeLabel">
           <Properties>
-            <Property name="font" type="java.awt.Font" resourceKey="jLabel1.font"/>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel1.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
+            <Property name="font" type="java.awt.Font" resourceKey="welcomeLabel.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="welcomeLabel.text"/>
+            <Property name="name" type="java.lang.String" value="welcomeLabel" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="startGameBtn">
@@ -329,11 +323,94 @@
             <Property name="name" type="java.lang.String" value="startButton" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="introLabel">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel2.text"/>
-            <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="introLabel.text"/>
+            <Property name="name" type="java.lang.String" value="introLabel" noResource="true"/>
           </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="resultsPanel">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="resultsPanel" noResource="true"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 196]"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="gameFinishedLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="levelLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="levelLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="levelLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="264" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="317" max="32767" attributes="0"/>
+                  <Component id="quitQuizBtn2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="gameFinishedLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="levelLabel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="levelLabel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="levelLabel2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="53" max="32767" attributes="0"/>
+                  <Component id="quitQuizBtn2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="gameFinishedLabel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" resourceKey="gameFinishedLabel.font"/>
+            <Property name="text" type="java.lang.String" resourceKey="gameFinishedLabel.text"/>
+            <Property name="name" type="java.lang.String" value="gameFinishedLabel" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="levelLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="levelLabel.text"/>
+            <Property name="name" type="java.lang.String" value="levelLabel" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="levelLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="levelLabel1.text"/>
+            <Property name="name" type="java.lang.String" value="levelLabel1" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="levelLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="levelLabel2.text"/>
+            <Property name="name" type="java.lang.String" value="levelLabel2" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="quitQuizBtn2">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="quitQuizBtn2.text"/>
+            <Property name="name" type="java.lang.String" value="quitQuizBtn2" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="quitBtnPressedAction"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
