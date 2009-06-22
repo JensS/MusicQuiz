@@ -4,11 +4,7 @@
  */
 package musicquiz;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import java.util.prefs.*;
-import java.util.Date;
 
 /**
  *
@@ -18,7 +14,8 @@ public class Game {
 
     private Database db;
     private Preferences prefs;
-    private Date starttime;
+    private long time_start_ms;
+    private long time_avg_ms;
     private Question currentQuestion;
     private int correctAnswersCount = 0;
     private int falseAnswersCount = 0;
@@ -40,12 +37,22 @@ public class Game {
     }
 
     void startGame() {
-        starttime = new Date();
-    
+        correctAnswersCount = falseAnswersCount = 0;
+        time_avg_ms = time_start_ms = 0;
     }
 
     void prepareNewQuestion() {
         currentQuestion = new Question(this);
+        if (time_avg_ms > 0)
+        {
+            time_avg_ms = (time_avg_ms + (System.currentTimeMillis() - time_start_ms)) / 2;
+        }
+        else
+        {
+            time_avg_ms = (System.currentTimeMillis() - time_start_ms);
+        }
+        time_start_ms = System.currentTimeMillis();
+        System.out.println("Durchschnittszeit: " + (time_avg_ms /1000));
     }
 
     Question getQuestion() {
