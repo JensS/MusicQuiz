@@ -441,7 +441,7 @@ public class MusicQuizView extends FrameView {
                 MusicQuizView.this.answer3Btn.setForeground(null);
                 MusicQuizView.this.answer4Btn.setForeground(null);
             }
-        }, 1000);
+        }, 1200);
     }
 
     private JButton getButton(int number) {
@@ -483,7 +483,7 @@ public class MusicQuizView extends FrameView {
     }
 
     public void assignQuestion() {
-        questionLabel.setText(game.getQuestion().getQuestionString());
+        questionLabel.setText("Level " + game.getLevel() + ": " + game.getQuestion().getQuestionString());
         answer1Btn.setText("<html><b>1</b> " + game.getQuestion().getAnswer1Txt() + "</html>");
         answer2Btn.setText("<html><b>2</b> " + game.getQuestion().getAnswer2Txt() + "</html>");
         answer3Btn.setText("<html><b>3</b> " + game.getQuestion().getAnswer3Txt() + "</html>");
@@ -493,7 +493,7 @@ public class MusicQuizView extends FrameView {
     }
 
     private void playSong() {
-        game.getQuestion().getCorrectSong().play(60); // level system?
+        game.getQuestion().getCorrectSong().play(game.getPlaybackTime());
     }
 
     @Action

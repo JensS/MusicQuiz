@@ -50,18 +50,18 @@ public class Question {
     }
 
     String getAnswer1Txt() {
-        return getSong(0).getSongname();
+        return getSong(0).getArtist() + " - " + getSong(0).getSongname();
     }
 
     String getAnswer2Txt() {
-        return getSong(1).getSongname();
+        return getSong(1).getArtist() + " - " + getSong(1).getSongname();
     }
 
     String getAnswer3Txt() {
-        return getSong(2).getSongname();
+        return getSong(2).getArtist() + " - " + getSong(2).getSongname();
     }
 
     String getAnswer4Txt() {
-        return getSong(3).getSongname();
+        return getSong(3).getArtist() + " - " + getSong(3).getSongname();
     }
 }

@@ -20,6 +20,8 @@ public class Game {
     private int correctAnswersCount = 0;
     private int falseAnswersCount = 0;
     private boolean startable = false;
+    private int level;
+    private int answers_to_complete_level;
 
     Game() {
         db = new Database();
@@ -36,8 +38,14 @@ public class Game {
         return startable;
     }
 
+    int getPlaybackTime() {
+        return (int) 60 - 10*level;
+    }
+
     void startGame() {
         correctAnswersCount = falseAnswersCount = 0;
+        level = 1;
+        answers_to_complete_level = 2;
         time_sum_ms = time_start_ms = 0;
     }
 
@@ -73,6 +81,10 @@ public class Game {
         return prefs;
     }
 
+    int getLevel() {
+        return level;
+    }
+    
     void stopGame() {
         currentQuestion = null;
     }
@@ -85,6 +97,12 @@ public class Game {
     void validateAnswer(int button) {
         if (getQuestion().getCorrectSongNumber() == button) {
             correctAnswersCount++;
+            answers_to_complete_level--;
+            if (answers_to_complete_level == 0)
+            {
+                level++;
+                answers_to_complete_level = 2 * level;
+            }
             System.out.println("Ja");
         } else {
             falseAnswersCount++;
