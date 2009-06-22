@@ -487,6 +487,7 @@ public class MusicQuizView extends FrameView {
     public void startQuizPressed() {
         game.startGame();
         setComponent(quizPanel);
+        getFrame().pack();
         assignQuestion();
     }
 
