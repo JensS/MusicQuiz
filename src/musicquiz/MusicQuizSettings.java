@@ -106,11 +106,11 @@ public class MusicQuizSettings extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+
     }//GEN-LAST:event_formWindowClosed
 
     @Action
     public void fileChooseBtnClicked() {
-
         int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             game.getPreferences().put("music-dir", fc.getSelectedFile().getAbsolutePath());

@@ -52,6 +52,11 @@ public class Game {
         time_start_ms = System.currentTimeMillis();
     }
     
+    int getWrongAnswersCount()
+    {
+        return falseAnswersCount;
+    }
+
     int getAverageTimeSeconds()
     {
         if ((correctAnswersCount + falseAnswersCount) == 0)

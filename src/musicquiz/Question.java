@@ -50,7 +50,7 @@ public class Question {
     }
 
     String getAnswer1Txt() {
-        return getSong(0).getArtist() + " - " + getSong(0).getSongname();
+        return getSong(0).getArtist() + " &#32 - &#32 " + getSong(0).getSongname();
     }
 
     String getAnswer2Txt() {

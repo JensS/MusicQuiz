@@ -8,8 +8,8 @@ import java.io.File;
 import java.util.Hashtable;
 
 /**
- *
- * @author jens
+ * @author <j.sage@bgx-mail.de> Jens Sage
+ * @author <manuel@bgx-mail.de> Manuel Prömel
  */
 public class Database {
 

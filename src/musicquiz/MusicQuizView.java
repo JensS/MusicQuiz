@@ -119,9 +119,9 @@ public class MusicQuizView extends FrameView {
         answersContainerPanel = new javax.swing.JPanel();
         answer1Btn = new javax.swing.JButton();
         answer3Btn = new javax.swing.JButton();
+        quitQuizBtn = new javax.swing.JButton();
         answer2Btn = new javax.swing.JButton();
         answer4Btn = new javax.swing.JButton();
-        quitQuizBtn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -140,9 +140,9 @@ public class MusicQuizView extends FrameView {
         resultsPanel = new javax.swing.JPanel();
         gameFinishedLabel = new javax.swing.JLabel();
         levelLabel = new javax.swing.JLabel();
-        levelLabel1 = new javax.swing.JLabel();
-        levelLabel2 = new javax.swing.JLabel();
-        quitQuizBtn2 = new javax.swing.JButton();
+        wrongAnswersLabel = new javax.swing.JLabel();
+        avgTimeLabel = new javax.swing.JLabel();
+        back2StartBtn = new javax.swing.JButton();
 
         quizPanel.setName("quizPanel"); // NOI18N
 
@@ -169,6 +169,32 @@ public class MusicQuizView extends FrameView {
             }
         });
 
+        javax.swing.GroupLayout answersContainerPanelLayout = new javax.swing.GroupLayout(answersContainerPanel);
+        answersContainerPanel.setLayout(answersContainerPanelLayout);
+        answersContainerPanelLayout.setHorizontalGroup(
+            answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(answersContainerPanelLayout.createSequentialGroup()
+                .addGroup(answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(answer3Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(answer1Btn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        answersContainerPanelLayout.setVerticalGroup(
+            answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(answersContainerPanelLayout.createSequentialGroup()
+                .addComponent(answer1Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(answer3Btn))
+        );
+
+        quitQuizBtn.setText(resourceMap.getString("quitQuizBtn.text")); // NOI18N
+        quitQuizBtn.setName("quitQuizBtn"); // NOI18N
+        quitQuizBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                quitBtnPressedAction(evt);
+            }
+        });
+
         answer2Btn.setText(resourceMap.getString("answer2Btn.text")); // NOI18N
         answer2Btn.setName("answer2Btn"); // NOI18N
         answer2Btn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -185,39 +211,6 @@ public class MusicQuizView extends FrameView {
             }
         });
 
-        javax.swing.GroupLayout answersContainerPanelLayout = new javax.swing.GroupLayout(answersContainerPanel);
-        answersContainerPanel.setLayout(answersContainerPanelLayout);
-        answersContainerPanelLayout.setHorizontalGroup(
-            answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(answersContainerPanelLayout.createSequentialGroup()
-                .addGroup(answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answer1Btn)
-                    .addComponent(answer3Btn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                .addGroup(answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answer2Btn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(answer4Btn, javax.swing.GroupLayout.Alignment.TRAILING)))
-        );
-        answersContainerPanelLayout.setVerticalGroup(
-            answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(answersContainerPanelLayout.createSequentialGroup()
-                .addGroup(answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answer1Btn)
-                    .addComponent(answer2Btn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(answersContainerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answer3Btn, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(answer4Btn, javax.swing.GroupLayout.Alignment.TRAILING)))
-        );
-
-        quitQuizBtn.setText(resourceMap.getString("quitQuizBtn.text")); // NOI18N
-        quitQuizBtn.setName("quitQuizBtn"); // NOI18N
-        quitQuizBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                quitBtnPressedAction(evt);
-            }
-        });
-
         javax.swing.GroupLayout quizPanelLayout = new javax.swing.GroupLayout(quizPanel);
         quizPanel.setLayout(quizPanelLayout);
         quizPanelLayout.setHorizontalGroup(
@@ -225,7 +218,12 @@ public class MusicQuizView extends FrameView {
             .addGroup(quizPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(quizPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(answersContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(quizPanelLayout.createSequentialGroup()
+                        .addComponent(answersContainerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(quizPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(answer4Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(answer2Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
                     .addComponent(questionLabel)
                     .addComponent(quitQuizBtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -236,7 +234,12 @@ public class MusicQuizView extends FrameView {
                 .addContainerGap()
                 .addComponent(questionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(answersContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(quizPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(answersContainerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(quizPanelLayout.createSequentialGroup()
+                        .addComponent(answer2Btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(answer4Btn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(quitQuizBtn)
                 .addContainerGap())
@@ -284,11 +287,11 @@ public class MusicQuizView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -359,17 +362,17 @@ public class MusicQuizView extends FrameView {
         levelLabel.setText(resourceMap.getString("levelLabel.text")); // NOI18N
         levelLabel.setName("levelLabel"); // NOI18N
 
-        levelLabel1.setText(resourceMap.getString("levelLabel1.text")); // NOI18N
-        levelLabel1.setName("levelLabel1"); // NOI18N
+        wrongAnswersLabel.setText(resourceMap.getString("wrongAnswersLabel.text")); // NOI18N
+        wrongAnswersLabel.setName("wrongAnswersLabel"); // NOI18N
 
-        levelLabel2.setText(resourceMap.getString("levelLabel2.text")); // NOI18N
-        levelLabel2.setName("levelLabel2"); // NOI18N
+        avgTimeLabel.setText(resourceMap.getString("avgTimeLabel.text")); // NOI18N
+        avgTimeLabel.setName("avgTimeLabel"); // NOI18N
 
-        quitQuizBtn2.setText(resourceMap.getString("quitQuizBtn2.text")); // NOI18N
-        quitQuizBtn2.setName("quitQuizBtn2"); // NOI18N
-        quitQuizBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                quitBtnPressedAction(evt);
+        back2StartBtn.setText(resourceMap.getString("back2StartBtn.text")); // NOI18N
+        back2StartBtn.setName("back2StartBtn"); // NOI18N
+        back2StartBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back2StartBtnMouseClicked(evt);
             }
         });
 
@@ -382,12 +385,12 @@ public class MusicQuizView extends FrameView {
                 .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gameFinishedLabel)
                     .addComponent(levelLabel)
-                    .addComponent(levelLabel1)
-                    .addComponent(levelLabel2))
-                .addContainerGap(264, Short.MAX_VALUE))
+                    .addComponent(wrongAnswersLabel)
+                    .addComponent(avgTimeLabel))
+                .addContainerGap(257, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsPanelLayout.createSequentialGroup()
-                .addContainerGap(317, Short.MAX_VALUE)
-                .addComponent(quitQuizBtn2)
+                .addContainerGap(343, Short.MAX_VALUE)
+                .addComponent(back2StartBtn)
                 .addContainerGap())
         );
         resultsPanelLayout.setVerticalGroup(
@@ -398,11 +401,11 @@ public class MusicQuizView extends FrameView {
                 .addGap(18, 18, 18)
                 .addComponent(levelLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(levelLabel1)
+                .addComponent(wrongAnswersLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(levelLabel2)
+                .addComponent(avgTimeLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                .addComponent(quitQuizBtn2)
+                .addComponent(back2StartBtn)
                 .addContainerGap())
         );
 
@@ -416,13 +419,12 @@ public class MusicQuizView extends FrameView {
             game.getQuestion().getCorrectSong().stopPlayer();
         }
         game.stopGame();
-        displayResults();
-        setComponent(homePanel);
+        setComponent(resultsPanel);
+        levelLabel.setText("<html>Level: <b>" + game.getLevel() +"</b>");
+        wrongAnswersLabel.setText("<html>Wrong answers: <b>" + game.getWrongAnswersCount() +"</b>");
+        avgTimeLabel.setText("<html>Average answering time: <b>" + game.getAverageTimeSeconds() +" seconds</b>");
         getFrame().pack();
     }//GEN-LAST:event_quitBtnPressedAction
-
-    private void displayResults() {
-    }
 
     private void questionAnswered(int answer_n) {
         markedBtn = getButton(game.getQuestion().getCorrectSongNumber());
@@ -476,6 +478,11 @@ public class MusicQuizView extends FrameView {
         questionAnswered(4);
     }//GEN-LAST:event_answer4BtnMousePressed
 
+    private void back2StartBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_back2StartBtnMouseClicked
+        setComponent(homePanel);
+        getFrame().pack();
+    }//GEN-LAST:event_back2StartBtnMouseClicked
+
     @Action
     public void startQuizPressed() {
         game.startGame();
@@ -485,10 +492,10 @@ public class MusicQuizView extends FrameView {
 
     public void assignQuestion() {
         questionLabel.setText("Level " + game.getLevel() + ": " + game.getQuestion().getQuestionString());
-        answer1Btn.setText("<html><b>1</b> " + game.getQuestion().getAnswer1Txt() + "</html>");
-        answer2Btn.setText("<html><b>2</b> " + game.getQuestion().getAnswer2Txt() + "</html>");
-        answer3Btn.setText("<html><b>3</b> " + game.getQuestion().getAnswer3Txt() + "</html>");
-        answer4Btn.setText("<html><b>4</b> " + game.getQuestion().getAnswer4Txt() + "</html>");
+        answer1Btn.setText("<html><b>1</b> &#32 " + game.getQuestion().getAnswer1Txt() + "</html>");
+        answer2Btn.setText("<html><b>2</b> &#32 " + game.getQuestion().getAnswer2Txt() + "</html>");
+        answer3Btn.setText("<html><b>3</b> &#32 " + game.getQuestion().getAnswer3Txt() + "</html>");
+        answer4Btn.setText("<html><b>4</b> &#32 " + game.getQuestion().getAnswer4Txt() + "</html>");
         getFrame().pack();
         playSong();
     }
@@ -512,18 +519,17 @@ public class MusicQuizView extends FrameView {
     private javax.swing.JButton answer3Btn;
     private javax.swing.JButton answer4Btn;
     private javax.swing.JPanel answersContainerPanel;
+    private javax.swing.JLabel avgTimeLabel;
+    private javax.swing.JButton back2StartBtn;
     private javax.swing.JLabel gameFinishedLabel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JLabel introLabel;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel levelLabel;
-    private javax.swing.JLabel levelLabel1;
-    private javax.swing.JLabel levelLabel2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JLabel questionLabel;
     private javax.swing.JButton quitQuizBtn;
-    private javax.swing.JButton quitQuizBtn2;
     private javax.swing.JPanel quizPanel;
     private javax.swing.JPanel resultsPanel;
     private javax.swing.JButton startGameBtn;
@@ -531,6 +537,7 @@ public class MusicQuizView extends FrameView {
     private javax.swing.JLabel statusMessageLabel;
     private javax.swing.JPanel statusPanel;
     private javax.swing.JLabel welcomeLabel;
+    private javax.swing.JLabel wrongAnswersLabel;
     // End of variables declaration//GEN-END:variables
     private final Timer messageTimer;
     private final Timer busyIconTimer;
